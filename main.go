@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	proxy := NewGetter("code.whyyou.me", "git", "http://xian.whyyou.me:3000")
+	proxy := NewGetter("code.whyyou.me", "git", "ssh://git@xian.whyyou.me")
 	server := &http.Server{
 		Addr:         ":80",
 		Handler:      proxy,

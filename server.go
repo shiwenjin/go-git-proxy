@@ -28,8 +28,12 @@ func (x *Getter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, fmt.Errorf("unsupport path: %s", r.URL.Path).Error(), http.StatusBadRequest)
 			return
 		}
+
 		prefix := fmt.Sprintf("%s/%s/%s", x.host, sp[0], sp[1])
+
 		repository := fmt.Sprintf("%s/%s/%s.%s", x.root, sp[0], sp[1], x.vcs)
+
+		repository = strings.ReplaceAll(repository, "wangzeqing", "jiyue")
 		fmt.Fprintf(w, `<html><head><meta name="go-import" content="%s %s %s" /></head></html>`, prefix, x.vcs, repository)
 		log.Println("go get [", prefix, "] from repository [", repository, "].")
 		return
